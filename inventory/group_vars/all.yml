@@ -21,7 +21,7 @@ bin_dir: /usr/local/bin
 #etcd_multiaccess: true
 
 ## External LB example config
-## apiserver_loadbalancer_domain_name: "elb.some.domain"
+apiserver_loadbalancer_domain_name: "office_master.clara.io"
 #loadbalancer_apiserver:
 #  address: 1.2.3.4
 #  port: 1234

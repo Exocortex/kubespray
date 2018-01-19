@@ -143,32 +143,32 @@ helm_deployment_type: host
 # K8s image pull policy (imagePullPolicy)
 k8s_image_pull_policy: IfNotPresent
 
-# Install/upgrade docker
-docker_enabled: true
+# Install docker.
+docker_enabled: false
 
 # Kubernetes dashboard
 # RBAC required. see docs/getting-started.md for access details.
-dashboard_enabled: true
+dashboard_enabled: false
 
 # Monitoring apps for k8s
 efk_enabled: false
 
 # Helm deployment
-helm_enabled: false
+helm_enabled: true
 
 # Istio deployment
 istio_enabled: false
 
 # Local volume provisioner deployment
-local_volumes_enabled: false
+local_volumes_enabled: true
 
 # Add Persistent Volumes Storage Class for corresponding cloud provider ( OpenStack is only supported now )
 persistent_volumes_enabled: false
 
 # Make a copy of kubeconfig on the host that runs Ansible in GITDIR/artifacts
-# kubeconfig_localhost: false
+kubeconfig_localhost: true
 # Download kubectl onto the host that runs Ansible in GITDIR/artifacts
-# kubectl_localhost: false
+kubectl_localhost: true
 
 # dnsmasq
 # dnsmasq_upstream_dns_servers:
@@ -179,13 +179,19 @@ persistent_volumes_enabled: false
 # kubelet_cgroups_per_qos: true
 
 # A comma separated list of levels of node allocatable enforcement to be enforced by kubelet.
-# Acceptable options are 'pods', 'system-reserved', 'kube-reserved' and ''. Default is "".
+# Acceptible options are 'pods', 'system-reserved', 'kube-reserved' and ''. Default is "".
 # kubelet_enforce_node_allocatable: pods
 
 ## Supplementary addresses that can be added in kubernetes ssl keys.
-## That can be useful for example to setup a keepalived virtual IP
-# supplementary_addresses_in_ssl_keys: [10.0.0.1, 10.0.0.2, 10.0.0.3]
-
-## Supplementary names that can be added in kubernetes ssl keys.
-## That can be usefull for example to setup external named load balancers and/or failovers
-# supplementary_names_in_ssl_keys: ['kubernertes.example.com']
+## That can be usefull for example to setup a keepalived virtual IP
+supplementary_addresses_in_ssl_keys:
+- 72.139.121.250
+- 72.139.121.251
+- 192.168.100.90
+- 192.168.100.91
+supplementary_names_in_ssl_keys:
+- office.exocortex.com
+- office.clara.io
+- office.threehub.net
+- office-ingress.clara.io
+- office-master.clara.io
