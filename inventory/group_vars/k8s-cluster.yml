@@ -144,7 +144,7 @@ helm_deployment_type: host
 k8s_image_pull_policy: IfNotPresent
 
 # Install docker.
-docker_enabled: false
+docker_enabled: true
 
 # Kubernetes dashboard
 # RBAC required. see docs/getting-started.md for access details.
@@ -187,11 +187,14 @@ kubectl_localhost: true
 supplementary_addresses_in_ssl_keys:
 - 72.139.121.250
 - 72.139.121.251
-- 192.168.100.90
-- 192.168.100.91
+- 72.139.121.252
+- 198.84.241.12
+- 23.233.59.52
+- 198.87.218.162
+- 192.168.100.80
+- 192.168.100.81
 supplementary_names_in_ssl_keys:
-- office.exocortex.com
-- office.clara.io
-- office.threehub.net
-- office-ingress.clara.io
-- office-master.clara.io
+- ben.threehub.com
+- ben-ingress.threehub.com
+- ben-master.threehub.com
+- pvr.clara.io
