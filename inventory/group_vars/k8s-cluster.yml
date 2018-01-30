@@ -68,6 +68,7 @@ kube_users:
 # Choose network plugin (calico, contiv, weave or flannel)
 # Can also be set to 'cloud', which lets the cloud provider setup appropriate routing
 kube_network_plugin: calico
+ipip: false
 
 # weave's network password for encryption
 # if null then no network encryption
