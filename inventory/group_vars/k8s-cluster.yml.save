@@ -23,7 +23,7 @@ kube_users_dir: "{{ kube_config_dir }}/users"
 kube_api_anonymous_auth: false
 
 ## Change this to use another Kubernetes version, e.g. a current beta release
-kube_version: v1.9.2
+kube_version: v1.9.1
 
 # Where the binaries will be downloaded.
 # Note: ensure that you've enough disk space (about 1G)
@@ -68,7 +68,6 @@ kube_users:
 # Choose network plugin (calico, contiv, weave or flannel)
 # Can also be set to 'cloud', which lets the cloud provider setup appropriate routing
 kube_network_plugin: calico
-ipip: false
 
 # weave's network password for encryption
 # if null then no network encryption
@@ -188,14 +187,11 @@ kubectl_localhost: true
 supplementary_addresses_in_ssl_keys:
 - 72.139.121.250
 - 72.139.121.251
-- 72.139.121.252
-- 198.84.241.12
-- 23.233.59.52
-- 198.87.218.162
-- 192.168.100.80
-- 192.168.100.81
+- 192.168.100.90
+- 192.168.100.91
 supplementary_names_in_ssl_keys:
-- ben.threehub.com
-- ben-ingress.threehub.com
-- ben-master.threehub.com
-- pvr.clara.io
+- office.exocortex.com
+- office.clara.io
+- office.threehub.net
+- office-ingress.clara.io
+- office-master.clara.io
