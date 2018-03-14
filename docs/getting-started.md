@@ -1,29 +1,12 @@
 Getting started
 ===============
 
-The easiest way to run the deployement is to use the **kubespray-cli** tool.
-A complete documentation can be found in its [github repository](https://github.com/kubespray/kubespray-cli).
-
-Here is a simple example on AWS:
-
-* Create instances and generate the inventory
-
-```
-kubespray aws --instances 3
-```
-
-* Run the deployment
-
-```
-kubespray deploy --aws -u centos -n calico
-```
-
 Building your own inventory
 ---------------------------
 
 Ansible inventory can be stored in 3 formats: YAML, JSON, or INI-like. There is
 an example inventory located
-[here](https://github.com/kubernetes-incubator/kubespray/blob/master/inventory/inventory.example).
+[here](https://github.com/kubernetes-incubator/kubespray/blob/master/inventory/sample/hosts.ini).
 
 You can use an
 [inventory generator](https://github.com/kubernetes-incubator/kubespray/blob/master/contrib/inventory_builder/inventory.py)
@@ -36,9 +19,9 @@ certain threshold. Run `python3 contrib/inventory_builder/inventory.py help` hel
 Example inventory generator usage:
 
 ```
-cp -r inventory my_inventory
+cp -r inventory/sample inventory/mycluster
 declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5)
-CONFIG_FILE=my_inventory/inventory.cfg python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+CONFIG_FILE=inventory/mycluster/hosts.ini python3 contrib/inventory_builder/inventory.py ${IPS[@]}
 ```
 
 Starting custom deployment
@@ -50,7 +33,7 @@ and start the deployment:
 **IMPORTANT: Edit my_inventory/groups_vars/*.yaml to override data vars**
 
 ```
-ansible-playbook -i my_inventory/inventory.cfg cluster.yml -b -v \
+ansible-playbook -i inventory/mycluster/hosts.ini cluster.yml -b -v \
   --private-key=~/.ssh/private_key
 ```
 
@@ -64,7 +47,19 @@ You may want to add **worker** nodes to your existing cluster. This can be done 
 - Add the new worker node to your inventory under kube-node (or utilize a [dynamic inventory](https://docs.ansible.com/ansible/intro_dynamic_inventory.html)).
 - Run the ansible-playbook command, substituting `scale.yml` for `cluster.yml`:
 ```
-ansible-playbook -i my_inventory/inventory.cfg scale.yml -b -v \
+ansible-playbook -i inventory/mycluster/hosts.ini scale.yml -b -v \
+  --private-key=~/.ssh/private_key
+```
+
+Remove nodes
+------------
+
+You may want to remove **worker** nodes to your existing cluster. This can be done by re-running the `remove-node.yml` playbook. First, all nodes will be drained, then stop some kubernetes services and delete some certificates, and finally execute the kubectl command to delete these nodes. This can be combined with the add node function, This is generally helpful when doing something like autoscaling your clusters. Of course if a node is not working, you can remove the node and install it again.
+
+- Add worker nodes to the list under kube-node if you want to delete them (or utilize a [dynamic inventory](https://docs.ansible.com/ansible/intro_dynamic_inventory.html)).
+- Run the ansible-playbook command, substituting `remove-node.yml`:
+```
+ansible-playbook -i inventory/mycluster/hosts.ini remove-node.yml -b -v \
   --private-key=~/.ssh/private_key
 ```
 

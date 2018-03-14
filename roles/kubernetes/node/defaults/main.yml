@@ -14,6 +14,7 @@ kubelet_bind_address: "{{ ip | default('0.0.0.0') }}"
 # resolv.conf to base dns config
 kube_resolv_conf: "/etc/resolv.conf"
 
+# Can be ipvs, iptables
 kube_proxy_mode: iptables
 
 # If using the pure iptables proxy, SNAT everything. Note that it breaks any
@@ -34,12 +35,12 @@ kubelet_disable_shared_pid: true
 ### fail with swap on (default true)
 kubelet_fail_swap_on: true
 
-# Reserve this space for system resources
-kubelet_memory_limit: 256M
-kubelet_cpu_limit: 100m
+# Reserve this space for kube resources
+kube_memory_reserved: 256M
+kube_cpu_reserved: 100m
 # Reservation for master hosts
-kubelet_master_memory_limit: 512M
-kubelet_master_cpu_limit: 200m
+kube_master_memory_reserved: 512M
+kube_master_cpu_reserved: 200m
 
 kubelet_status_update_frequency: 10s
 
@@ -81,10 +82,13 @@ kube_hyperkube_image_repo: ""
 
 # If non-empty, will use this string as identification instead of the actual hostname
 kube_override_hostname: >-
-  {%- if cloud_provider is defined -%}
+  {%- if cloud_provider is defined and cloud_provider in [ 'aws' ] -%}
   {%- else -%}
-  {{ ansible_hostname }}
+  {{ inventory_hostname }}
   {%- endif -%}
 
 # cAdvisor port
 kube_cadvisor_port: 0
+
+# The read-only port for the Kubelet to serve on with no authentication/authorization.
+kube_read_only_port: 0
