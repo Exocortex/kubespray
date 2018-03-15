@@ -227,19 +227,19 @@ kubectl_localhost: true
 ## Supplementary addresses that can be added in kubernetes ssl keys.
 ## That can be usefull for example to setup a keepalived virtual IP
 supplementary_addresses_in_ssl_keys:
-- 72.139.121.250
-- 72.139.121.251
-- 72.139.121.252
-- 198.84.241.12
-- 23.233.59.52
-- 198.87.218.162
-- 192.168.100.80
-- 192.168.100.81
+- 192.168.200.1
+- 192.168.200.2
+- 192.168.200.3
+- 192.168.200.99
+- 142.44.215.142
+- 54.39.17.84
+- 158.69.52.195
+- 142.4.223.112
+- 142.44.140.54
+- 192.95.19.41
 supplementary_names_in_ssl_keys:
-- ben.threehub.com
-- ben-ingress.threehub.com
-- ben-master.threehub.com
-- pvr.clara.io
+- bhs-master.threehub.com
+- bhs.threehub.com
 
 ## Running on top of openstack vms with cinder enabled may lead to unschedulable pods due to NoVolumeZoneConflict restriction in kube-scheduler.
 ## See https://github.com/kubernetes-incubator/kubespray/issues/2141

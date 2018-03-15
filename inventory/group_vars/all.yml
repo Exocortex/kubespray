@@ -25,10 +25,10 @@ bin_dir: /usr/local/bin
 #etcd_peer_client_auth: true
 
 ## External LB example config
-apiserver_loadbalancer_domain_name: "ben-master.threehub.com"
-#loadbalancer_apiserver:
-#  address: 1.2.3.4
-#  port: 1234
+apiserver_loadbalancer_domain_name: "bhs-kube-api.threehub.com"
+loadbalancer_apiserver:
+  address: 142.44.140.54
+  port: 6443
 
 ## Internal loadbalancers for apiservers
 #loadbalancer_apiserver_localhost: true
