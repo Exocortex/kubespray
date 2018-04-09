@@ -27,7 +27,7 @@ bin_dir: /usr/local/bin
 ## External LB example config
 apiserver_loadbalancer_domain_name: "bhs-kube-api.threehub.com"
 loadbalancer_apiserver:
-  address: 142.44.140.54
+  address: 192.95.19.41
   port: 6443
 
 ## Internal loadbalancers for apiservers
