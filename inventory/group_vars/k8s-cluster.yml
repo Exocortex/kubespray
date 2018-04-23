@@ -145,7 +145,7 @@ helm_deployment_type: host
 k8s_image_pull_policy: IfNotPresent
 
 # Install docker.
-docker_enabled: true
+docker_enabled: false
 
 # Kubernetes dashboard
 # RBAC required. see docs/getting-started.md for access details.
