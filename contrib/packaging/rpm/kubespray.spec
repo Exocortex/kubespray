@@ -20,9 +20,10 @@ BuildRequires:  python2-setuptools
 BuildRequires:  python-d2to1
 BuildRequires:  python2-pbr
 
-Requires: ansible
+Requires: ansible >= 2.4.0
 Requires: python-jinja2 >= 2.10
 Requires: python-netaddr
+Requires: python-pbr
 
 %description
 
@@ -47,10 +48,10 @@ export SKIP_PIP_INSTALL=1
 
 %files
 %doc %{_docdir}/%{name}/README.md
-%doc %{_docdir}/%{name}/inventory/inventory.example
+%doc %{_docdir}/%{name}/inventory/sample/hosts.ini
 %config %{_sysconfdir}/%{name}/ansible.cfg
-%config %{_sysconfdir}/%{name}/inventory/group_vars/all.yml
-%config %{_sysconfdir}/%{name}/inventory/group_vars/k8s-cluster.yml
+%config %{_sysconfdir}/%{name}/inventory/sample/group_vars/all.yml
+%config %{_sysconfdir}/%{name}/inventory/sample/group_vars/k8s-cluster.yml
 %license %{_docdir}/%{name}/LICENSE
 %{python2_sitelib}/%{srcname}-%{release}-py%{python2_version}.egg-info
 %{_datarootdir}/%{name}/roles/
