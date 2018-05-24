@@ -19,7 +19,7 @@ kube_users_dir: "{{ kube_config_dir }}/users"
 kube_api_anonymous_auth: true
 
 ## Change this to use another Kubernetes version, e.g. a current beta release
-kube_version: v1.9.5
+kube_version: v1.10.2
 
 # Where the binaries will be downloaded.
 # Note: ensure that you've enough disk space (about 1G)
@@ -43,6 +43,10 @@ kube_users:
     role: admin
     groups:
       - system:masters
+
+# prometheus metrics
+kubelet_authentication_token_webhook: true
+kubelet_authorization_mode_webhook: true
 
 ## It is possible to activate / deactivate selected authentication methods (basic auth, static token auth)
 #kube_oidc_auth: false
@@ -160,6 +164,7 @@ k8s_image_pull_policy: IfNotPresent
 
 # Install docker.
 docker_enabled: false
+manage_docker: false
 
 # Kubernetes dashboard
 # RBAC required. see docs/getting-started.md for access details.
@@ -170,6 +175,7 @@ efk_enabled: false
 
 # Helm deployment
 helm_enabled: true
+helm_version: "v2.9.0"
 
 # Istio deployment
 istio_enabled: false
