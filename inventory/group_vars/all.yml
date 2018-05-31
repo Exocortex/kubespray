@@ -122,3 +122,7 @@ apiserver_loadbalancer_domain_name: "ben-master.threehub.com"
 
 ## Set level of detail for etcd exported metrics, specify 'extensive' to include histogram metrics.
 #etcd_metrics: basic
+
+# enable zombie reaping
+kubelet_disable_shared_pid: false
+
